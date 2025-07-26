@@ -8,7 +8,7 @@ const Hero = () => {
   const [typingSpeed, setTypingSpeed] = useState(150);
 
   const titles = [
-    'Flutter Developer',
+    
     'Full Stack Enthusiast', 
     'Generative AI Explorer',
     'Problem Solver'

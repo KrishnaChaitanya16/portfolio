@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Mail, Github, Linkedin, Code, Send } from 'lucide-react';
+import { Mail, Github, Linkedin, Code, Send, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,6 +11,8 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
   const ref = useRef<HTMLDivElement>(null);
 
   const contactLinks = [
@@ -75,13 +78,39 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError('');
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    alert('Thank you for your message! I\'ll get back to you soon.');
+    try {
+      // Initialize EmailJS with your public key
+      // You'll need to replace these with your actual EmailJS credentials
+      const result = await emailjs.send(
+        'service_abc123', // Replace 'service_abc123' with your actual service ID
+        'template_abc123', // Replace 'template_abc123' with your actual template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: '16krish2005@gmail.com'
+        },
+        'user_abc123def456' // Replace 'user_abc123def456' with your actual public key
+      );
+      
+      if (result.status === 200) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setError('Failed to send message. Please try again or contact me directly at 16krish2005@gmail.com');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const resetForm = () => {
+    setIsSubmitted(false);
+    setError('');
   };
 
   return (
@@ -131,105 +160,126 @@ const Contact = () => {
             })}
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form or Success Message */}
           <div className={`${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
             <div className="bg-gray-800/80 backdrop-blur-sm rounded-lg p-8 border border-gray-700/50">
-              <h3 className="text-2xl font-bold text-white mb-6">Send Me a Message</h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="group">
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
-                      placeholder="Enter your name"
-                    />
-                  </div>
+              {!isSubmitted ? (
+                <>
+                  <h3 className="text-2xl font-bold text-white mb-6">Send Me a Message</h3>
                   
-                  <div className="group">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                      Your Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                </div>
-
-                <div className="group">
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
-                    placeholder="What's this about?"
-                  />
-                </div>
-
-                <div className="group">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={6}
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300 resize-none"
-                    placeholder="Tell me about your project or just say hello!"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-green-500/25 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send size={20} />
-                      Send Message
-                    </>
+                  {error && (
+                    <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg">
+                      <p className="text-red-400 text-sm">{error}</p>
+                    </div>
                   )}
-                </button>
-              </form>
+                  
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="group">
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                          Your Name
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
+                          placeholder="Enter your name"
+                        />
+                      </div>
+                      
+                      <div className="group">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                          Your Email
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
+                          placeholder="Enter your email"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="group">
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
+                        placeholder="What's this about?"
+                      />
+                    </div>
+
+                    <div className="group">
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={6}
+                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300 resize-none"
+                        placeholder="Tell me about your project or just say hello!"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-green-500/25 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send size={20} />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle size={40} className="text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">Message Sent Successfully!</h3>
+                    <p className="text-gray-300">
+                      Thank you for reaching out! I'll get back to you as soon as possible.
+                    </p>
+                  </div>
+                  <button
+                    onClick={resetForm}
+                    className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              )}
             </div>
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="mt-16 pt-8 border-t border-gray-700/50 text-center">
-          <p className="text-gray-400">
-            Made with ❤️ by Krishna Chaitanya • © 2024 All rights reserved
-          </p>
         </div>
       </div>
     </section>
