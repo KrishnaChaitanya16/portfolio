@@ -79,7 +79,7 @@ const About = () => {
               {/* Image placeholder */}
               <div className="w-72 h-72 rounded-full border-4 border-blue-400 bg-gray-700 flex items-center justify-center overflow-hidden shadow-lg">
                 {/* Replace the div below with an <img src="your-image-url.jpg" ... /> when ready */}
-                <img src="/assets/Pic.png" alt="Profile" className="w-full h-full object-cover" />
+                <img src="/Pic.png" alt="Profile" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>

@@ -8,53 +8,53 @@ const Skills = () => {
     {
       title: 'Languages',
       skills: [
-        { name: 'Java', icon: '/assets/java.png', color: 'from-orange-500 to-red-500' }, // Replace with actual logo
-        { name: 'Python', icon: '/assets/python.png', color: 'from-blue-500 to-yellow-500' },
-        { name: 'C++', icon: '/assets/c-.png', color: 'from-blue-600 to-purple-600' },
-        { name: 'C', icon: '/assets/c.png', color: 'from-blue-400 to-cyan-400' }
+        { name: 'Java', icon: '/java.png', color: 'from-orange-500 to-red-500' },
+        { name: 'Python', icon: '/python.png', color: 'from-blue-500 to-yellow-500' },
+        { name: 'C++', icon: '/c-.png', color: 'from-blue-600 to-purple-600' },
+        { name: 'C', icon: '/c.png', color: 'from-blue-400 to-cyan-400' }
       ]
     },
     {
       title: 'Mobile',
       skills: [
-        { name: 'Flutter', icon: '/assets/image.png', color: 'from-blue-400 to-cyan-400' },
-        { name: 'Firebase', icon: '/assets/firebase.png', color: 'from-orange-500 to-yellow-500' },
-        { name: 'Hive', icon: '/assets/hive.jpeg', color: 'from-purple-500 to-pink-500' },
-        { name: 'Provider', icon: '/assets/dart.png', color: 'from-green-500 to-blue-500' }
+        { name: 'Flutter', icon: '/image.png', color: 'from-blue-400 to-cyan-400' },
+        { name: 'Firebase', icon: '/firebase.png', color: 'from-orange-500 to-yellow-500' },
+        { name: 'Hive', icon: '/hive.jpeg', color: 'from-purple-500 to-pink-500' },
+        { name: 'Provider', icon: '/dart.png', color: 'from-green-500 to-blue-500' }
       ]
     },
     {
       title: 'Web',
       skills: [
-        { name: 'ReactJS', icon: '/assets/reactjs.png', color: 'from-cyan-400 to-blue-500' },
-        { name: 'HTML', icon: '/assets/html.png', color: 'from-orange-500 to-red-500' },
-        { name: 'CSS', icon: '/assets/css.jpeg', color: 'from-blue-500 to-purple-500' },
-        { name: 'JavaScript', icon: '/assets/js.png', color: 'from-yellow-400 to-orange-500' }
+        { name: 'ReactJS', icon: '/reactjs.png', color: 'from-cyan-400 to-blue-500' },
+        { name: 'HTML', icon: '/html.png', color: 'from-orange-500 to-red-500' },
+        { name: 'CSS', icon: '/css.jpeg', color: 'from-blue-500 to-purple-500' },
+        { name: 'JavaScript', icon: '/js.png', color: 'from-yellow-400 to-orange-500' }
       ]
     },
     {
       title: 'Databases',
       skills: [
-        { name: 'MySQL', icon: '/assets/sql.png', color: 'from-blue-600 to-cyan-600' },
-        { name: 'PostgreSQL', icon: '/assets/postgresql.jpeg', color: 'from-blue-700 to-gray-700' },
-        { name: 'Pinecone', icon: '/assets/pinecon.jpeg', color: 'from-green-500 to-teal-500' }
+        { name: 'MySQL', icon: '/sql.png', color: 'from-blue-600 to-cyan-600' },
+        { name: 'PostgreSQL', icon: '/postgresql.jpeg', color: 'from-blue-700 to-gray-700' },
+        { name: 'Pinecone', icon: '/pinecon.jpeg', color: 'from-green-500 to-teal-500' }
       ]
     },
     {
       title: 'AI/ML',
       skills: [
-        { name: 'Llama ', icon: '/assets/meta.jpeg', color: 'from-purple-500 to-pink-500' },
-        { name: 'Transformers', icon: '/assets/hugging face.png', color: 'from-blue-500 to-purple-500' },
-        { name: 'Generative AI', icon: '/assets/genai.png', color: 'from-gradient-to-r from-purple-400 to-pink-400' }
+        { name: 'Llama ', icon: '/meta.jpeg', color: 'from-purple-500 to-pink-500' },
+        { name: 'Transformers', icon: '/hugging face.png', color: 'from-blue-500 to-purple-500' },
+        { name: 'Generative AI', icon: '/genai.png', color: 'from-gradient-to-r from-purple-400 to-pink-400' }
       ]
     },
     {
       title: 'Tools/APIs',
       skills: [
-        { name: 'Git', icon: '/assets/git.png', color: 'from-orange-500 to-red-500' },
-        { name: 'Gemini API', icon: '/assets/gemini.png', color: 'from-blue-400 to-purple-400' },
-        { name: 'Agora SDK', icon: '/assets/agora.png', color: 'from-green-500 to-blue-500' },
-        { name: 'Google Maps API', icon: '/assets/googlemaps.png', color: 'from-green-400 to-blue-400' }
+        { name: 'Git', icon: '/git.png', color: 'from-orange-500 to-red-500' },
+        { name: 'Gemini API', icon: '/gemini.png', color: 'from-blue-400 to-purple-400' },
+        { name: 'Agora SDK', icon: '/agora.png', color: 'from-green-500 to-blue-500' },
+        { name: 'Google Maps API', icon: '/googlemaps.png', color: 'from-green-400 to-blue-400' }
       ]
     }
   ];

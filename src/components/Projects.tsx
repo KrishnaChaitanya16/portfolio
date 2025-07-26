@@ -39,7 +39,7 @@ const Projects = () => {
       title: 'Manas Mythri - Medical Chatbot',
       description: 'A chatbot for medical diagnosis and recommendations, built with Python and Jupyter Notebook.',
       longDescription: 'This medical chatbot provides primary care, emergency assistance, health monitoring, mental health support, and medication management. It uses AI to assist users with health-related inquiries and recommendations.',
-      image: 'https://media.gettyimages.com/id/2169995660/photo/asian-woman-using-ai-apps-on-bed.jpg?s=612x612&w=0&k=20&c=aQ6xECWgCJBUBtXZELjDQ1747D-0zHXExr93H-xlqBI=',
+      image: 'https://images.pexels.com/photos/708852/pexels-photo-708852.jpeg?auto=compress&cs=tinysrgb&w=600',
       technologies: ['Python', 'Jupyter Notebook', 'AI', 'Healthcare'],
       features: [
         'Primary care and symptom assessment',
