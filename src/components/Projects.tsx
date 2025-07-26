@@ -18,7 +18,38 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
-  const projects = [
+  const projects: Project[] = [
+    {
+      title: 'Vitalia',
+      description: 'Vitalia is a health and wellness platform.',
+      longDescription: 'Vitalia is a comprehensive health and wellness platform designed to help users track, manage, and improve their overall well-being. It integrates various health metrics and provides actionable insights.',
+      image: 'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=500',
+      technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
+      features: [
+        'Health tracking',
+        'Personalized insights',
+        'User-friendly dashboard',
+        'Secure data management'
+      ],
+      githubUrl: 'https://github.com/KrishnaChaitanya16/Vitalia',
+      category: 'Mobile App'
+    },
+    {
+      title: 'Manas Mythri - Medical Chatbot',
+      description: 'A chatbot for medical diagnosis and recommendations, built with Python and Jupyter Notebook.',
+      longDescription: 'This medical chatbot provides primary care, emergency assistance, health monitoring, mental health support, and medication management. It uses AI to assist users with health-related inquiries and recommendations.',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnoCCe2_Ctjw7DC54dH9rc_mJC-nJsAhyA7A&s',
+      technologies: ['Python', 'Jupyter Notebook', 'AI', 'Healthcare'],
+      features: [
+        'Primary care and symptom assessment',
+        'Emergency assistance',
+        'Health monitoring and tracking',
+        'Mental health support',
+        'Medication management'
+      ],
+      githubUrl: 'https://github.com/KrishnaChaitanya16/medical-chatbot',
+      category: 'AI/Healthcare'
+    },
     {
       title: 'SymJam',
       description: 'A collaborative music application built with Flutter that enables real-time music collaboration.',
@@ -34,39 +65,9 @@ const Projects = () => {
       ],
       githubUrl: 'https://github.com/KrishnaChaitanya16/Musicprofileapp',
       category: 'Mobile App'
-    },
-    {
-      title: 'Manas Mythri - Medical Chatbot',
-      description: 'A chatbot for medical diagnosis and recommendations, built with Python and Jupyter Notebook.',
-      longDescription: 'This medical chatbot provides primary care, emergency assistance, health monitoring, mental health support, and medication management. It uses AI to assist users with health-related inquiries and recommendations.',
-      image: 'https://images.pexels.com/photos/708852/pexels-photo-708852.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['Python', 'Jupyter Notebook', 'AI', 'Healthcare'],
-      features: [
-        'Primary care and symptom assessment',
-        'Emergency assistance',
-        'Health monitoring and tracking',
-        'Mental health support',
-        'Medication management'
-      ],
-      githubUrl: 'https://github.com/KrishnaChaitanya16/medical-chatbot',
-      category: 'AI/Healthcare'
-    },
-    {
-      title: 'Vitalia',
-      description: 'Vitalia is a health and wellness platform.',
-      longDescription: 'Vitalia is a comprehensive health and wellness platform designed to help users track, manage, and improve their overall well-being. It integrates various health metrics and provides actionable insights.',
-      image: 'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=500',
-      technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
-      features: [
-        'Health tracking',
-        'Personalized insights',
-        'User-friendly dashboard',
-        'Secure data management'
-      ],
-      githubUrl: 'https://github.com/KrishnaChaitanya16/Vitalia',
-      category: 'Mobile App'
     }
   ];
+  
 
   useEffect(() => {
     const observer = new IntersectionObserver(
