@@ -1,17 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Code, Database, Smartphone, Brain, Trophy, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
-  const floatingIcons = [
-    { Icon: Code, color: 'text-blue-400', delay: '0s' },
-    { Icon: Smartphone, color: 'text-green-400', delay: '0.5s' },
-    { Icon: Database, color: 'text-purple-400', delay: '1s' },
-    { Icon: Brain, color: 'text-yellow-400', delay: '1.5s' },
-    { Icon: Trophy, color: 'text-red-400', delay: '2s' }
-  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -87,7 +79,7 @@ const About = () => {
               {/* Image placeholder */}
               <div className="w-72 h-72 rounded-full border-4 border-blue-400 bg-gray-700 flex items-center justify-center overflow-hidden shadow-lg">
                 {/* Replace the div below with an <img src="your-image-url.jpg" ... /> when ready */}
-                <img src="/assets/Pic.png" />
+                <img src="/assets/Pic.png" alt="Profile" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
